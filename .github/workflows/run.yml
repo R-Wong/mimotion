@@ -36,6 +36,11 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@users.noreply.github.com
-          git add .
-          git commit -m "persist tokens trigger by ${{ github.event_name }}"
-          git push origin master
+          # 只在有变更时才提交
+          if git diff --quiet; then
+              echo "No changes to commit"
+          else
+              git add .
+              git commit -m "persist tokens trigger by workflow_dispatch"
+              git push origin master
+          fi
