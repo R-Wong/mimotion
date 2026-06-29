@@ -1,5 +1,8 @@
 name: 刷步数
 
+env:
+  TZ: Asia/Shanghai
+
 on:
   schedule:
     - cron: '28 1,5,11,13,14,22 * * *'
